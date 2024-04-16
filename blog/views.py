@@ -10,4 +10,7 @@ from .models import Post
 #     return HttpResponse("Hello, Blog!")
 
 class PostList(generic.ListView):
-    model = Post
+    # model = Post --> does exactly the same as queryset = Post.objects.all() but NO FILTERS
+    queryset = Post.objects.filter(status=1)  # noqa does the same as model = Post but YES FILTERS
+    # queryset = Post.objects.all().order_by("created_on")  # noqa POWERFUL .order_by() method // add - to reverse order ("-created_on")
+    # template_name = "post_list.html"
