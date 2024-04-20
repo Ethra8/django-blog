@@ -27,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['8000-ethra8-djangoblog-6isvylf4sa8.ws-eu110.gitpod.io', '.herokuapp.com', '8000-ethra8-djangoblog-chln31ti2gd.ws-eu110.gitpod.io']
+ALLOWED_HOSTS = ['8000-ethra8-djangoblog-518u2o77pam.ws-eu110.gitpod.io', '8000-ethra8-djangoblog-6isvylf4sa8.ws-eu110.gitpod.io', '.herokuapp.com', '8000-ethra8-djangoblog-chln31ti2gd.ws-eu110.gitpod.io']
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_summernote',
     'blog',
 ]
 
