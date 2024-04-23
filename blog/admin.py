@@ -13,6 +13,10 @@ class PostAdmin(SummernoteModelAdmin):
     summernote_fields = ('content',)
 
 
+@admin.register(Comment)
+class CommnentAdmin(SummernoteModelAdmin):
+    list_display = ('post','body', 'author', 'created_on', 'approved')
+    list_filter = ('approved', 'created_on')
 
 
 
