@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404, reverse
-# from django.http import HttpResponse
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -13,9 +12,12 @@ from .forms import CommentForm
 #     return HttpResponse("Hello, Blog!")
 
 class PostList(generic.ListView):
-    # model = Post --> does exactly the same as queryset = Post.objects.all() but NO FILTERS
-    queryset = Post.objects.filter(status=1)  # noqa does the same as model = Post but YES FILTERS
-    # queryset = Post.objects.all().order_by("created_on")  # noqa POWERFUL .order_by() method // add - to reverse order ("-created_on")
+    # model = Post --> does exactly the same as queryset = Post.objects.all()
+    # but NO FILTERS
+    queryset = Post.objects.filter(status=1)  # noqa does the same as
+    # model = Post but YES FILTERS
+    # queryset = Post.objects.all().order_by("created_on")
+    # noqa POWERFUL .order_by() method // add - to reverse order ("-created_on")
     # template_name = "post_list.html"
     template_name = "blog/index.html"
     paginate_by = 6
@@ -49,7 +51,6 @@ def post_detail(request, slug):
 
     comment_form = CommentForm()
 
-
     return render(
         request,
         "blog/post_detail.html",
@@ -58,9 +59,8 @@ def post_detail(request, slug):
             "comments": comments,
             "comment_count": comment_count,
             "comment_form": comment_form,
-        }, 
+        },
     )
-
 
 
 def comment_edit(request, slug, comment_id):
@@ -81,10 +81,9 @@ def comment_edit(request, slug, comment_id):
             comment.save()
             messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
         else:
-            messages.add_message(request, messages.ERROR, 'Error updating comment!')
+            messages.add_message(request, messages.ERROR, 'Error updating comment!')  # noqa
 
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
-
 
 
 def comment_delete(request, slug, comment_id):
@@ -99,6 +98,6 @@ def comment_delete(request, slug, comment_id):
         comment.delete()
         messages.add_message(request, messages.SUCCESS, 'Comment deleted!')
     else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')  # noqa
 
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))

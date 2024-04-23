@@ -1,9 +1,11 @@
 from django.contrib import admin
-from .models import Post, Comment
 from django_summernote.admin import SummernoteModelAdmin
+from .models import Post, Comment
 
 # Register your models here.
-# admin.site.register(Post) -- can be eliminated since we added class PostAdmin() with decorator @admin.register(Post)
+# noqa admin.site.register(Post) -- can be eliminated since we added class PostAdmin() with decorator @admin.register(Post)
+
+
 @admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
     list_display = ('title', 'slug', 'status', 'created_on')
@@ -15,8 +17,5 @@ class PostAdmin(SummernoteModelAdmin):
 
 @admin.register(Comment)
 class CommnentAdmin(SummernoteModelAdmin):
-    list_display = ('post','body', 'author', 'created_on', 'approved')
+    list_display = ('post', 'body', 'author', 'created_on', 'approved')
     list_filter = ('approved', 'created_on')
-
-
-
